@@ -1,0 +1,20 @@
+{% extends 'blog/base_blog.html' %}	
+
+
+
+{% block title %}
+	Post list
+{% endblock %}
+
+
+{% block content %}
+	{% if not posts %}
+		<h4>Nothing found for this request :(</h4>
+	{% else %}
+		<h1 class="mb-5">Posts:</h1>
+		{% for post in posts %}
+			{% include 'blog/includes/post_card_template.html' %}
+		{% endfor %}
+	{% endif %}
+{% endblock%}
+

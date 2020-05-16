@@ -1,0 +1,36 @@
+{% extends 'blog/base_blog.html' %}
+
+
+
+{% block title %}
+	{{ post.title| safe }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<h1 class="mt-5">
+		{{ post.title| safe }}
+	</h1>
+	<p>{{ post.body | safe}}</p>
+	<hr>
+	<h3>Comments</h3>
+	<hr>
+	<div class="ml-5">
+	{% for comment in post.comment_set.all %}
+		{% include 'blog/includes/comment_card_template.html' %}
+		{% if comment.comments_set.all %}
+		{% endif %}
+	{% endfor %}
+	</div>
+	<hr>
+	<h4>Leave comment</h4>
+	<hr>
+	<div class="cart">
+		<form action="{% url 'comment_create_url' slug=post.slug %}" method="post">
+			{% csrf_token %}
+			{{ form.media }}
+			{{ form.as_p }}
+			<button type="submit" class="btn btn-primary mt-2 mb-5">Comment</button>
+		</form>
+	</div>
+{% endblock %}
+

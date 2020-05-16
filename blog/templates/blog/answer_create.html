@@ -1,0 +1,17 @@
+{% extends 'blog/base_blog.html ' %}
+
+
+{% block title %}
+	Leave answer - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+	<form method = "post">
+		{% csrf_token %}
+        {{ form.media }}
+		{{ form.media }}
+        {{ form.as_p }}
+		<button type="submit" class="btn btn-primary">Leave answer</button>
+	</form>
+{% endblock %}

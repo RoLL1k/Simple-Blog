@@ -1,0 +1,21 @@
+<div class="card mt-3 w-75">
+	<div class="card-header d-flex justify-content-between pt-1 pb-1">
+        <div><span style="font-weight: bold; font-size: 20px">{{ answer.author }} |</span> to <i>{{ answer.comment.author }}</i></div>
+		<div>{{ answer.date_pub }}</div>
+	</div>
+	<div class="card-body pt-0 pb-0">
+		<div class="cart-text">
+			{{ answer.body|safe }}
+		</div>
+		<div>
+			<a href="{% url 'answer_create_url' slug=post.slug id=answer.id %}">Ответить</a>
+		</div>
+	</div>
+</div>
+<div class="ml-5 pl-2">
+{% for answer in answer.comments_set.all %}
+	{% include 'blog/includes/answer_card_template.html' %}
+{% endfor %}
+</div>
+
+
